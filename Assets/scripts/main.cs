@@ -14,17 +14,20 @@ public class main : MonoBehaviour {
     public GameObject[] card,cardEnable,col,colEnable;
 
     public Sprite[] tumb;
-    public Image bg;
+    public Image bg,bgEnable;
+   
 
     // Use this for initialization
     void Start () {
-       
-        x = 1;
+        coll = 1;
+        x = 2;
 
         for (int i = 0; i < card.Length; i++)
         {
                 bg = cardEnable[i].GetComponent<Image>();
+                bgEnable = card[i].GetComponent<Image>();
                 bg.sprite = tumb[i];
+                bgEnable.sprite = tumb[i];
             
         }
         for (int j = 0; j < card.Length; j++)
@@ -102,7 +105,6 @@ public class main : MonoBehaviour {
         {
             card[0].SetActive(true);
             cardEnable[0].SetActive(false);
-            card[0].GetComponent<Animation>().Play("animation_card");
             
 
         }
@@ -115,7 +117,6 @@ public class main : MonoBehaviour {
         {
             card[1].SetActive(true);
             cardEnable[1].SetActive(false);
-            card[1].GetComponent<Animation>().Play("animation_card");
 
         }
         else
@@ -128,7 +129,6 @@ public class main : MonoBehaviour {
         {
             card[2].SetActive(true);
             cardEnable[2].SetActive(false);
-            card[2].GetComponent<Animation>().Play("animation_card");
 
         }
         else
@@ -141,7 +141,6 @@ public class main : MonoBehaviour {
         {
             card[3].SetActive(true);
             cardEnable[3].SetActive(false);
-            card[3].GetComponent<Animation>().Play("animation_card");
 
         }
         else
@@ -154,7 +153,6 @@ public class main : MonoBehaviour {
         {
             card[4].SetActive(true);
             cardEnable[4].SetActive(false);
-            card[4].GetComponent<Animation>().Play("animation_card");
 
         }
         else
