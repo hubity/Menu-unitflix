@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class main : MonoBehaviour {
 
@@ -12,9 +13,26 @@ public class main : MonoBehaviour {
 
     public GameObject[] card,cardEnable,col,colEnable;
 
+    public Sprite[] tumb;
+    public Image bg;
+
     // Use this for initialization
     void Start () {
-        x = 0;
+       
+        x = 1;
+
+        for (int i = 0; i < card.Length; i++)
+        {
+                bg = cardEnable[i].GetComponent<Image>();
+                bg.sprite = tumb[i];
+            
+        }
+        for (int j = 0; j < card.Length; j++)
+        {
+            bg = colEnable[j].GetComponent<Image>();
+            bg.sprite = tumb[j];
+        }
+        
 	}
 	
 	// Update is called once per frame
@@ -85,6 +103,7 @@ public class main : MonoBehaviour {
             card[0].SetActive(true);
             cardEnable[0].SetActive(false);
             card[0].GetComponent<Animation>().Play("animation_card");
+            
 
         }
         else
