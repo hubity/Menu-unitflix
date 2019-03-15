@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\scripts\Background.cs" />
     <Compile Include="Assets\scripts\main.cs" />
     <Compile Include="Assets\scripts\testes.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">

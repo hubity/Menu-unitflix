@@ -9,9 +9,10 @@ public class main : MonoBehaviour {
    // public GameObject card1, card2, card3, card4, card5;
     //public GameObject cardEnable1, cardEnable2, cardEnable3, cardEnable4, cardEnable5;
     public Animation anin;
-    public int x, coll;
+    public static int coll;
+    public int x;
 
-    public GameObject[] card,cardEnable,col,colEnable;
+    public GameObject[] col1,colEnable1,col2,colEnable2,col3,colEnable3;
 
     public Sprite[] tumb;
     public Image bg,bgEnable;
@@ -22,21 +23,30 @@ public class main : MonoBehaviour {
         coll = 1;
         x = 2;
 
-        for (int i = 0; i < card.Length; i++)
+        for (int i = 0; i < col1.Length; i++)
         {
-                bg = cardEnable[i].GetComponent<Image>();
-                bgEnable = card[i].GetComponent<Image>();
+                bg = colEnable1[i].GetComponent<Image>();
+                bgEnable = col1[i].GetComponent<Image>();
                 bg.sprite = tumb[i];
-                bgEnable.sprite = tumb[i];
-            
+                bgEnable.sprite = tumb[i];            
         }
-        for (int j = 0; j < card.Length; j++)
+
+        for (int j = 0; j < col1.Length; j++)
         {
-            bg = colEnable[j].GetComponent<Image>();
+            bg = colEnable2[j].GetComponent<Image>();
+            bgEnable = col2[j].GetComponent<Image>();
             bg.sprite = tumb[j];
+            bgEnable.sprite = tumb[j];
         }
-        
-	}
+
+        for (int n = 0; n < col1.Length; n++)
+        {
+            bg = colEnable3[n].GetComponent<Image>();
+            bgEnable = col3[n].GetComponent<Image>();
+            bg.sprite = tumb[n];
+            bgEnable.sprite = tumb[n];
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -49,6 +59,10 @@ public class main : MonoBehaviour {
         {
             MangerCol2();
         }
+        if (coll == 3)
+        {
+            MangerCol3();
+        }
         InpuKey();
 
     }
@@ -59,7 +73,7 @@ public class main : MonoBehaviour {
         {
             if(x == 0)
             {
-                x = x = card.Length - 1;
+                x = x = col1.Length - 1;
             }
             else
             {
@@ -69,31 +83,38 @@ public class main : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            x = x + 1;
+            if(x == col1.Length - 1)
+            {
+                x = 0;
+            }else
+            {
+                x = x + 1;
+            }
+            
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            coll = 2;
-            card[x].SetActive(false);
-            cardEnable[x].SetActive(true);
+            coll = coll + 1;
+            col1[x].SetActive(false);
+            colEnable1[x].SetActive(true);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            coll = 1;
-            col[x].SetActive(false);
-            colEnable[x].SetActive(true);
+            coll = coll - 1;
+            col2[x].SetActive(false);
+            colEnable2[x].SetActive(true);
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
             if(coll == 1)
             {
-                Debug.Log(col[x]);
+                Debug.Log(col2[x]);
 
             }
             if(coll == 2)
             {
-                Debug.Log(card[x]);
+                Debug.Log(col1[x]);
             }
         }
        
@@ -103,62 +124,62 @@ public class main : MonoBehaviour {
     {
         if (x == 0)
         {
-            card[0].SetActive(true);
-            cardEnable[0].SetActive(false);
+            col1[0].SetActive(true);
+            colEnable1[0].SetActive(false);
             
 
         }
         else
         {
-            card[0].SetActive(false);
-            cardEnable[0].SetActive(true);
+            col1[0].SetActive(false);
+            colEnable1[0].SetActive(true);
         }
         if (x == 1)
         {
-            card[1].SetActive(true);
-            cardEnable[1].SetActive(false);
+            col1[1].SetActive(true);
+            colEnable1[1].SetActive(false);
 
         }
         else
         {
-            card[1].SetActive(false);
-            cardEnable[1].SetActive(true);
+            col1[1].SetActive(false);
+            colEnable1[1].SetActive(true);
         }
 
         if (x == 2)
         {
-            card[2].SetActive(true);
-            cardEnable[2].SetActive(false);
+            col1[2].SetActive(true);
+            colEnable1[2].SetActive(false);
 
         }
         else
         {
-            card[2].SetActive(false);
-            cardEnable[2].SetActive(true);
+            col1[2].SetActive(false);
+            colEnable1[2].SetActive(true);
         }
 
         if (x == 3)
         {
-            card[3].SetActive(true);
-            cardEnable[3].SetActive(false);
+            col1[3].SetActive(true);
+            colEnable1[3].SetActive(false);
 
         }
         else
         {
-            card[3].SetActive(false);
-            cardEnable[3].SetActive(true);
+            col1[3].SetActive(false);
+            colEnable1[3].SetActive(true);
         }
 
         if (x == 4)
         {
-            card[4].SetActive(true);
-            cardEnable[4].SetActive(false);
+            col1[4].SetActive(true);
+            colEnable1[4].SetActive(false);
 
         }
         else
         {
-            card[4].SetActive(false);
-            cardEnable[4].SetActive(true);
+            col1[4].SetActive(false);
+            colEnable1[4].SetActive(true);
         }
     }
 
@@ -166,66 +187,125 @@ public class main : MonoBehaviour {
     {
         if (x == 0)
         {
-            col[0].SetActive(true);
-            colEnable[0].SetActive(false);
-            col[0].GetComponent<Animation>().Play("animation_card");
+            col2[0].SetActive(true);
+            colEnable2[0].SetActive(false);
+            
 
         }
         else
         {
-            col[0].SetActive(false);
-            colEnable[0].SetActive(true);
+            col2[0].SetActive(false);
+            colEnable2[0].SetActive(true);
         }
         if (x == 1)
         {
-            col[1].SetActive(true);
-            colEnable[1].SetActive(false);
-            col[1].GetComponent<Animation>().Play("animation_card");
+            col2[1].SetActive(true);
+            colEnable2[1].SetActive(false);
 
         }
         else
         {
-            col[1].SetActive(false);
-            colEnable[1].SetActive(true);
+            col2[1].SetActive(false);
+            colEnable2[1].SetActive(true);
         }
 
         if (x == 2)
         {
-            col[2].SetActive(true);
-            colEnable[2].SetActive(false);
-            col[2].GetComponent<Animation>().Play("animation_card");
+            col2[2].SetActive(true);
+            colEnable2[2].SetActive(false);
 
         }
         else
         {
-            col[2].SetActive(false);
-            colEnable[2].SetActive(true);
+            col2[2].SetActive(false);
+            colEnable2[2].SetActive(true);
         }
 
         if (x == 3)
         {
-            col[3].SetActive(true);
-            colEnable[3].SetActive(false);
-            col[3].GetComponent<Animation>().Play("animation_card");
+            col2[3].SetActive(true);
+            colEnable2[3].SetActive(false);
 
         }
         else
         {
-            col[3].SetActive(false);
-            colEnable[3].SetActive(true);
+            col2[3].SetActive(false);
+            colEnable2[3].SetActive(true);
         }
 
         if (x == 4)
         {
-            col[4].SetActive(true);
-            colEnable[4].SetActive(false);
-            col[4].GetComponent<Animation>().Play("animation_card");
+            col2[4].SetActive(true);
+            colEnable2[4].SetActive(false);
 
         }
         else
         {
-            col[4].SetActive(false);
-            colEnable[4].SetActive(true);
+            col2[4].SetActive(false);
+            colEnable2[4].SetActive(true);
+        }
+    }
+
+    void MangerCol3()
+    {
+        if (x == 0)
+        {
+            col3[0].SetActive(true);
+            colEnable3[0].SetActive(false);
+
+
+        }
+        else
+        {
+            col3[0].SetActive(false);
+            colEnable3[0].SetActive(true);
+        }
+        if (x == 1)
+        {
+            col3[1].SetActive(true);
+            colEnable3[1].SetActive(false);
+
+        }
+        else
+        {
+            col3[1].SetActive(false);
+            colEnable3[1].SetActive(true);
+        }
+
+        if (x == 2)
+        {
+            col3[2].SetActive(true);
+            colEnable3[2].SetActive(false);
+
+        }
+        else
+        {
+            col3[2].SetActive(false);
+            colEnable3[2].SetActive(true);
+        }
+
+        if (x == 3)
+        {
+            col3[3].SetActive(true);
+            colEnable3[3].SetActive(false);
+
+        }
+        else
+        {
+            col3[3].SetActive(false);
+            colEnable3[3].SetActive(true);
+        }
+
+        if (x == 4)
+        {
+            col3[4].SetActive(true);
+            colEnable3[4].SetActive(false);
+
+        }
+        else
+        {
+            col3[4].SetActive(false);
+            colEnable3[4].SetActive(true);
         }
     }
 }

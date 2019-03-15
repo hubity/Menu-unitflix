@@ -1,86 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class testes : MonoBehaviour
 {
-
-    
-    public Image baseimg;
-    public Sprite[] sprite;
-    private main man;
-    public int x, idAnim;
-    public Text desc, title;
-
     public Animation anim;
-
+    public int Ncol;
     // Start is called before the first frame update
     void Start()
     {
-       man = GameObject.FindGameObjectWithTag("Manager").GetComponent<main>();
-       
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        x = man.x;
-        SliderBackground();
-        ManagerAnim();
-    }
+        Ncol = main.coll;
 
-    void SliderBackground()
-    {
-        switch (x)
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            case 0:
-                idAnim = 0;
-                baseimg.sprite = sprite[0];
-                title.text = "titulo jogo 1";
-                desc.text = "Descrição jogo 1";
-
-                break;
-            case 1:
-                idAnim = 1;
-                baseimg.sprite = sprite[1];
-                title.text = "titulo jogo 2";
-                desc.text = "Descrição jogo 2";
-
-                break;
-            case 2:
-                idAnim = 2;
-                baseimg.sprite = sprite[2];
-                title.text = "titulo jogo 3";
-                desc.text = "Descrição jogo 3";
-               
-                break;
-            case 3:
-                baseimg.sprite = sprite[3];
-                title.text = "titulo jogo 4";
-                desc.text = "Descrição jogo 4";
-                break;
-            case 4:
-                baseimg.sprite = sprite[4];
-                title.text = "titulo jogo 5";
-                desc.text = "Descrição jogo 5";
-                break;
+            if(Ncol == 1)
+                anim.GetComponent<Animation>().Play("animcol1");
+            if(Ncol == 2)
+                anim.GetComponent<Animation>().Play("animcol2");
+            if (Ncol == 3)
+                anim.GetComponent<Animation>().Play("animcol3");
+            if (Ncol == 4)
+                anim.GetComponent<Animation>().Play("animcol4");
         }
-    }
-
-    void ManagerAnim()
-    {
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            anim.GetComponent<Animation>().Play("backgroundHove");
-
+            if (Ncol == 5)
+                anim.GetComponent<Animation>().Play("animcolUP4");
+            if (Ncol == 4)
+                anim.GetComponent<Animation>().Play("animcolUP3");
+            if (Ncol == 3)
+                anim.GetComponent<Animation>().Play("animcolUP2");
+            if (Ncol == 2)
+                anim.GetComponent<Animation>().Play("animcolUP1");
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+    }  
+        IEnumerator menu()
         {
-            anim.GetComponent<Animation>().Play("backgroundHove");
+            yield return new WaitForSeconds(0.45f);
+            anim.GetComponent<Animation>().Stop("anim-scroll");
 
+        yield break;
         }
-
-
-    }
 }
